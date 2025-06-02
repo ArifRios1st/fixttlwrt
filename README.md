@@ -12,5 +12,5 @@ chain mangle_prerouting_ttl65 {
 
 # Install
 ```bash
-bash -c "$(wget -qO - 'https://raw.githubusercontent.com/ArifRios1st/fixttlwrt/refs/heads/main/install.sh')"
+bash -c "$(wget -qO - 'https://raw.githubusercontent.com/ArifRios1st/fixttlwrt/main/install.sh')"
 ```
