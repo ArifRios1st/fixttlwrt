@@ -6,7 +6,8 @@ NFT=/etc/nftables.d/ttl65.nft
 FIX=/usr/bin/fixttl
 CON=/usr/lib/lua/luci/controller/fixttl
 VIEW=/usr/lib/lua/luci/view/fixttl
-URL=https://raw.githubusercontent.com/aryobrokollyy/fixttlwrt/main
+CONF=/etc/config/fixttl
+URL=https://raw.githubusercontent.com/ArifRios1st/fixttlwrt/main
 
 function update(){
 clear
@@ -26,13 +27,14 @@ clear
 function uninstall()
 {		
 
-	echo "deleting file huawei monitor..."
+	echo "deleting file fixttl..."
     	clear
 	echo "Remove Folder n File"
         rm -rf $CON
         rm -rf $VIEW
         rm -f $FIX
         rm -f $NFT
+        rm -f $CONF
 	sleep 1
  	echo "Firewall Restart"
         fw4 reload
