@@ -1,21 +1,39 @@
 <%+header%>
 
-<h2>Fix TTL 65</h2>
-
-<% if status_msg and #status_msg > 0 then %>
+<h2>Fix TTL</h2>
     <div class="cbi-section">
         <h3>Log Proses</h3>
-        <pre style="background:#f8f8f8;padding:10px;border:1px solid #ccc;"><%= status_msg %></pre>
+        <% if status_msg and #status_msg > 0 then %>
+            <pre style="padding:10px;border:1px solid #ccc;"><%= status_msg %></pre>
+        <% else %>
+            <pre style="padding:10px;border:1px solid #ccc;">Log tidak tersedia.</pre>
+        <% end %>
     </div>
-<% else %>
-    <div class="cbi-section">
-        <h3>Log Kosong</h3>
-        <pre style="background:#f8f8f8;padding:10px;border:1px solid #ccc;">Log tidak tersedia.</pre>
-    </div>
-<% end %>
+        
+<br \>
+<div class="cbi-section">
+    <h3>Status</h3>
+    <% if ttl_active then %>
+        <div style="color: green; font-weight:bold;padding: 20px;"> Enabled </div>
+    <% else %>
+        <div style="color: red; font-weight:bold;;padding: 20px;"> Disabled </div>
+    <% end %>
+</div>
+<br \>
 
 <form method="post">
-    <div class="cbi-section">
+    <div class="cbi-section" style="padding: 20px">
+        <label for="ttl_value">Nilai TTL (1-255):</label> <br \>
+        <input 
+            type="number" 
+            id="ttl_value" 
+            name="ttl_value" 
+            min="1" 
+            max="255" 
+            value="<%= ttl_value or 65 %>" 
+            required
+        /> <br \><br \>
+    
         <% if ttl_active then %>
             <button class="cbi-button cbi-button-remove" type="submit" name="action" value="toggle">
                 Nonaktifkan TTL
