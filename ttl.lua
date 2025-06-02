@@ -51,6 +51,7 @@ function render_page()
         -- Save TTL value to UCI config
         uci:set("fixttl", "settings", "ttl_value", ttl_value)
         uci:commit("fixttl")
+        log("TTL disimpan: " .. ttl_value)
         
         if is_ttl_enabled() then
             log("Menonaktifkan TTL " .. ttl_value .. "...")
@@ -72,10 +73,13 @@ function render_page()
 chain mangle_postrouting_ttl65 {
     type filter hook postrouting priority 300; policy accept;
     counter ip ttl set ]] .. ttl_value .. [[
+    
 }
+
 chain mangle_prerouting_ttl65 {
     type filter hook prerouting priority 300; policy accept;
     counter ip ttl set ]] .. ttl_value .. [[
+    
 }
 ]])
                 f:close()
